@@ -136,7 +136,7 @@ function triangulate() {
           variance = radius * 0.25;
 
       for (var i = 0; i < count; i++) {
-          x = Math.cos((i / count) * TWO_PI) * radius + centerX + randomRange(-variance, variance);
+         x = Math.cos((i / count) * TWO_PI) * radius + centerX + randomRange(-variance, variance);
           y = Math.sin((i / count) * TWO_PI) * radius + centerY + randomRange(-variance, variance);
           vertices.push([x, y]);
       }
@@ -175,17 +175,18 @@ function shatter() {
 
 
       tl1.to(fragment.canvas, 1, {
-          z:-500,
+          z:-10,
           rotationX:rx,
-          rotationY:ry,
+          rotationY:75,
           ease:Cubic.easeIn
       });
-      tl1.to(fragment.canvas, 0.4,{alpha:0}, 0.6);
+      tl1.to(fragment.canvas, 0.4,{alpha:1}, 0.6);
 
       tl0.insert(tl1, delay);
 
       fragments.push(fragment);
       container.appendChild(fragment.canvas);
+    //  console.log(delay);
   }
 
   container.removeChild(image);
@@ -195,7 +196,7 @@ function shatter() {
 function shatterCompleteHandler() {
   // add pooling?
   fragments.forEach(function(f) {
-      container.removeChild(f.canvas);
+  //    container.removeChild(f.canvas);
   });
   fragments.length = 0;
   vertices.length = 0;
